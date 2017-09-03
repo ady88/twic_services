@@ -1,4 +1,4 @@
-package com.adrian.twic_services.helpers;
+package com.adrian.twic_services_core.helpers;
 
 import java.util.List;
 

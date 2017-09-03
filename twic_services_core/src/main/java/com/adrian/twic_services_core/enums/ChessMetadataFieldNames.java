@@ -1,4 +1,4 @@
-package com.adrian.twic_services.enums;
+package com.adrian.twic_services_core.enums;
 
 public enum ChessMetadataFieldNames {
     EVENT("Event"),

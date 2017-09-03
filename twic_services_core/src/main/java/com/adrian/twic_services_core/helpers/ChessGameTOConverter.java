@@ -1,6 +1,6 @@
-package com.adrian.twic_services.helpers;
+package com.adrian.twic_services_core.helpers;
 
-import com.adrian.twic_services.enums.ChessMetadataFieldNames;
+import com.adrian.twic_services_core.enums.ChessMetadataFieldNames;
 import com.adrian.twic_services_commons.enums.ChessGameResult;
 import com.adrian.twic_services_commons.enums.ChessPlayerTitle;
 import com.adrian.twic_services_commons.transferobjects.ChessGameTO;

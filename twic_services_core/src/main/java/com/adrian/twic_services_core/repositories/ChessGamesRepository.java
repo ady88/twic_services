@@ -1,4 +1,4 @@
-package com.adrian.twic_services.repositories;
+package com.adrian.twic_services_core.repositories;
 
 import com.adrian.twic_services_commons.transferobjects.ChessGameTO;
 import java.util.List;

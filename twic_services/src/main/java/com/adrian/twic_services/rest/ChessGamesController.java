@@ -1,7 +1,7 @@
 package com.adrian.twic_services.rest;
 
-import com.adrian.twic_services.services.ChessGamesImportService;
-import com.adrian.twic_services.services.ChessGamesSearchService;
+import com.adrian.twic_services_core.ChessGamesImportService;
+import com.adrian.twic_services_core.ChessGamesSearchService;
 import com.adrian.twic_services_commons.transferobjects.ResponseTO;
 import javax.ws.rs.GET;
 import org.springframework.http.ResponseEntity;

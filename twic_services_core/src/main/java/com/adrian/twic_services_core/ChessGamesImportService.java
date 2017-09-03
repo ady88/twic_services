@@ -1,8 +1,8 @@
-package com.adrian.twic_services.services;
+package com.adrian.twic_services_core;
 
-import com.adrian.twic_services.helpers.ChessGameIntermediateFormat;
-import com.adrian.twic_services.helpers.ChessGameTOConverter;
-import com.adrian.twic_services.repositories.ChessGamesRepository;
+import com.adrian.twic_services_core.helpers.ChessGameIntermediateFormat;
+import com.adrian.twic_services_core.helpers.ChessGameTOConverter;
+import com.adrian.twic_services_core.repositories.ChessGamesRepository;
 import com.adrian.twic_services_commons.constants.Codes;
 import com.adrian.twic_services_commons.constants.Messages;
 import com.adrian.twic_services_commons.transferobjects.ChessGameTO;

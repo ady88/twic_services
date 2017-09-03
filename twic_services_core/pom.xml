@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.adrian</groupId>
-    <artifactId>twic_services_ui</artifactId>
+    <artifactId>twic_services_core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>twic_services_ui</name>
-    <description>Web UI for TWIC games</description>
+    <name>twic_services_core</name>
+    <description>TWIC services - core services with the actual business logic implementation</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -27,11 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -42,12 +38,17 @@
         <dependency>
             <groupId>com.adrian</groupId>
             <artifactId>twic_services_commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-SNAPSHOT</version>        
         </dependency>
         <dependency>
-            <groupId>com.adrian</groupId>
-            <artifactId>twic_services_core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.6</version>
         </dependency>
     </dependencies>
 
@@ -56,6 +57,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- This is used to not have maven create an executable jar -->
+                <executions>
+                    <execution>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -97,4 +106,6 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+
 </project>
