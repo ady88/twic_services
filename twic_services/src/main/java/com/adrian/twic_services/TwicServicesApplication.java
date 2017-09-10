@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.adrian.twic_services", "com.adrian.twic_services_core"})
+@ComponentScan(basePackages = {"com.adrian.twic_services", "com.adrian.twic_services_core", "com.adrian.twic_services_core.domain"})
 public class TwicServicesApplication {
 
     public static void main(String[] args) {
