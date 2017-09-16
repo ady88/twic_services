@@ -1,6 +1,8 @@
 package com.adrian.twic_services_commons.transferobjects;
 
-public class ChessMoveTO {
+import java.io.Serializable;
+
+public class ChessMoveTO implements Serializable {
 
     private String whiteMove;
     private String blackMove;
@@ -41,6 +43,6 @@ public class ChessMoveTO {
 
     @Override
     public String toString() {
-        return "ChessMoveTO{" + "whiteMove=" + whiteMove + ", blackMove=" + blackMove + ", moveNumber=" + moveNumber + '}';
+        return String.format("{%s : { white : %s, black: %s}}", Integer.toString(moveNumber), whiteMove, blackMove);
     }
 }

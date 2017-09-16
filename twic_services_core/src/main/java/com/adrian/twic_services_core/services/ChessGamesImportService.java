@@ -1,13 +1,14 @@
-package com.adrian.twic_services_core;
+package com.adrian.twic_services_core.services;
 
 import com.adrian.twic_services_core.helpers.ChessGameIntermediateFormat;
 import com.adrian.twic_services_core.helpers.ChessGameTOConverter;
-import com.adrian.twic_services_core.repositories.ChessGamesRepository;
 import com.adrian.twic_services_commons.constants.Codes;
 import com.adrian.twic_services_commons.constants.Messages;
 import com.adrian.twic_services_commons.transferobjects.ChessGameTO;
 import com.adrian.twic_services_commons.transferobjects.ResponseTO;
 import com.adrian.twic_services_commons.transferobjects.StatusTO;
+import com.adrian.twic_services_core.domain.ChessGame;
+import com.adrian.twic_services_core.helpers.ChessGameConverter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,6 +22,7 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import com.adrian.twic_services_core.repositories.ChessGameRepository;
 
 @Service
 public class ChessGamesImportService {
@@ -31,10 +33,10 @@ public class ChessGamesImportService {
     private static final String TWIC_PGN_SUFFIX = "g";
     private static final String TWIC_ZIP_EXTENSION = ".zip";
 
-    private final ChessGamesRepository repository;
+    private final ChessGameRepository chessGameRepository;
 
-    public ChessGamesImportService(ChessGamesRepository repository) {
-        this.repository = repository;
+    public ChessGamesImportService(ChessGameRepository chessGameRepository) {
+        this.chessGameRepository = chessGameRepository;
     }
 
     public ResponseTO importGamesFromPackage(String packageNumber) {
@@ -71,10 +73,15 @@ public class ChessGamesImportService {
         LOG.info(zipFileLocation);
         LOG.info(intermediateChessGamesFormat.toString());
 
-        List<ChessGameTO> chessGamesTO = ChessGameTOConverter.convertIntermediatChessGamesToChessGamesTO(intermediateChessGamesFormat);
+        final List<ChessGameTO> chessGamesTO = ChessGameTOConverter.convertIntermediatChessGamesToChessGamesTO(intermediateChessGamesFormat);
         response.setChessGames(chessGamesTO);
-
-        repository.saveGames(chessGamesTO);
+        
+        // convert to DB domain object
+        final List<ChessGame> chessGames = ChessGameConverter.convertChessGameTOs(chessGamesTO);
+        
+        for (final ChessGame chessGame : chessGames) {
+            chessGameRepository.save(chessGame);
+        }
 
         response.setStatus(new StatusTO(Codes.OK, Messages.OK));
 

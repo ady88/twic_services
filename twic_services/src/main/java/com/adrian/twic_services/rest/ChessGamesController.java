@@ -1,7 +1,7 @@
 package com.adrian.twic_services.rest;
 
-import com.adrian.twic_services_core.ChessGamesImportService;
-import com.adrian.twic_services_core.ChessGamesSearchService;
+import com.adrian.twic_services_core.services.ChessGamesImportService;
+import com.adrian.twic_services_core.services.ChessGamesSearchService;
 import com.adrian.twic_services_commons.transferobjects.ResponseTO;
 import javax.ws.rs.GET;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +39,7 @@ public class ChessGamesController {
 
     @RequestMapping(value = "/games", method = RequestMethod.GET)
     public ResponseEntity getGames() {
-        ResponseTO responseTO = searchService.getGames();
+        ResponseTO responseTO = searchService.getTop10GamesByOpeningName("test");
         ResponseEntity response = ResponseEntity.ok().body(responseTO);
         return response;
     }

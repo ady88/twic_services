@@ -3,7 +3,7 @@ package com.adrian.twic_services_ui.controllers;
 import com.adrian.twic_services_commons.transferobjects.ChessGameTO;
 import com.adrian.twic_services_commons.transferobjects.ChessMoveTO;
 import com.adrian.twic_services_commons.transferobjects.ResponseTO;
-import com.adrian.twic_services_core.ChessGamesSearchService;
+import com.adrian.twic_services_core.services.ChessGamesSearchService;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class HomeController {
     @RequestMapping({"/home"})
     public String getIndex(Model model) {
 
-        ResponseTO response = chessGamesSearchService.getGames();
+        ResponseTO response = chessGamesSearchService.getTop10GamesByOpeningName("test");
 
         ChessGameTO game = response.getChessGames().get(0);
 

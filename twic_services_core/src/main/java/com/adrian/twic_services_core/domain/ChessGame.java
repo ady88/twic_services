@@ -2,7 +2,6 @@ package com.adrian.twic_services_core.domain;
 
 import com.adrian.twic_services_commons.enums.ChessGameResult;
 import com.adrian.twic_services_commons.enums.ChessPlayerTitle;
-import com.adrian.twic_services_core.helpers.BaseEntity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "chess_game")
-public class ChessGame extends BaseEntity implements Serializable {
+@SuppressWarnings("PersistenceUnitPresent")
+public class ChessGame implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +24,23 @@ public class ChessGame extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "event")
-    private String eventName;
-    @Column(name = "white")
-    private String whiteName;
     @Column(name = "black")
     private String blackName;
-    private String round;
+
+    @Column(name = "black_title")
+    @Enumerated(EnumType.STRING)
+    private ChessPlayerTitle blackTitle;
+
+    @Column(name = "event")
+    private String eventName;
+
+    @Column(name = "game_result")
+    @Enumerated(EnumType.STRING)
+    private ChessGameResult gameResult;
+
+    @Column(name = "white")
+    private String whiteName;
+
     @Column(name = "event_date")
     private String eventDate;
 
@@ -39,17 +49,9 @@ public class ChessGame extends BaseEntity implements Serializable {
     @Column(name = "game_date")
     private String gameDate;
 
-    @Column(name = "game_result")
-    @Enumerated(EnumType.STRING)
-    private ChessGameResult gameResult;
-
     @Column(name = "white_title")
     @Enumerated(EnumType.STRING)
     private ChessPlayerTitle whiteTitle;
-
-    @Column(name = "black_title")
-    @Enumerated(EnumType.STRING)
-    private ChessPlayerTitle blackTitle;
 
     @Column(name = "white_elo")
     private String whiteElo;
@@ -69,14 +71,16 @@ public class ChessGame extends BaseEntity implements Serializable {
     @Column(name = "black_team")
     private String blackTeam;
 
+    private String round;
+
     @Column(name = "white_fide_id")
     private String whiteFideId;
 
     @Column(name = "black_fide_id")
     private String blackFideId;
 
-    @Type(type = "json")
-    @Column(name = "moves", columnDefinition = "json")
+    @Lob
+    @Column(length = 100000)
     private String moves;
 
     public String getEventName() {
